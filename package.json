@@ -4,6 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build:href": "ng build --base-href ./",
+    "delete:docs": "del docs",
+    "copy:dist": "copyfiles dist/gifs-app/* ./docs -f",
+    "copy:asset": "copyfiles src/assets/* ./docs/assets -f",
+    "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist && npm run copy:asset",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
