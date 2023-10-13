@@ -1,8 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, Query} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router';
+
 import {Hero, Publisher} from "../../interfaces/hero.interface";
 import {HeroesService} from "../../services/heroes.service";
-import {first} from "rxjs";
+import {first, switchMap} from "rxjs";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-page',
@@ -10,7 +13,7 @@ import {first} from "rxjs";
   styles: [
   ]
 })
-export class NewPageComponent {
+export class NewPageComponent implements OnInit  {
 
   public  heroForm = new FormGroup({
     id:               new FormControl<string>(''),
@@ -28,14 +31,36 @@ export class NewPageComponent {
     { id: 'Marvel Comics', desc: 'Marvel - Comics' },
   ];
 
-constructor(private heroesService: HeroesService) {
+constructor(
+  private heroesService: HeroesService,
+  private activatedRoute: ActivatedRoute,
+  private router: Router,
+  private snacbar:MatSnackBar
+  ) {
 }
 
 get currentHero(): Hero {
   const hero = this.heroForm.value as Hero;
-
   return hero;
+}
 
+ngOnInit(): void {
+
+  if( !this.router.url.includes('edit')) return;
+
+  this.activatedRoute.params
+  .pipe(
+    switchMap( ({id}) => this.heroesService.getHeroById(id) ),
+  ).subscribe( hero =>{
+
+    if(!hero ){
+      return this.router.navigateByUrl('/');
+    }
+
+    this.heroForm.reset( hero);
+    return;
+
+  });
 }
 
   onSubmit(): void{
@@ -46,6 +71,7 @@ get currentHero(): Hero {
     if(this.currentHero.id){
       this.heroesService.updateHero( this.currentHero)
         .subscribe(hero =>{
+          this.showSnackbar(`${ hero.superhero} updated!`);
           //mostrar snackbar
         });
       return;
@@ -54,6 +80,9 @@ get currentHero(): Hero {
 
     this.heroesService.addHero( this.currentHero)
       .subscribe(hero =>{
+        this.router.navigate(['/heroes/edit', hero.id ]);
+        this.showSnackbar(`${ hero.superhero} created!`);
+
         //mostrar snackbar
       });
 
@@ -61,6 +90,13 @@ get currentHero(): Hero {
     //this.heroesService.updateHero( this.heroForm.value);
 
     //console.log({ formIsValid: this.heroForm.valid, value:this.heroForm.value,      })
+  }
+
+
+  showSnackbar( message: string ):void {
+    this.snacbar.open( message, 'done', {
+      duration: 2500,
+    })
   }
 
 }

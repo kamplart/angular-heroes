@@ -13,7 +13,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Bruce Wayne",
       "first_appearance": "Detective Comics #27",
-      "characters": "Bruce Wayne"
+      "characters": "Bruce Wayne",
+      "alt_img": null
     },
     {
       "id": "dc-superman",
@@ -21,7 +22,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Kal-El",
       "first_appearance": "Action Comics #1",
-      "characters": "Kal-El"
+      "characters": "Kal-El",
+      "alt_img": "https://upload.wikimedia.org/wikipedia/en/d/d6/Superman_Man_of_Steel.jpg"
     },
     {
       "id": "dc-flash",
@@ -53,7 +55,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Princess Diana",
       "first_appearance": "All Star Comics #8",
-      "characters": "Princess Diana"
+      "characters": "Princess Diana",
+      "alt_img": "https://www.infobae.com/new-resizer/8dJFRwWfxoYWGO14glM5xAyO4pE=/992x1323/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2016/07/24150621/wonderwoman1.jpg"
     },
     {
       "id": "dc-martian",
@@ -166,6 +169,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "CLoCDDo",
+      "superhero": "santi",
+      "publisher": "DC Comics",
+      "alter_ego": "Superele",
+      "first_appearance": "2022",
+      "characters": "SuperMocoso",
+      "alt_img": "https://mediblogdefamilia.files.wordpress.com/2011/11/moco1.jpg"
     }
   ]
 }
