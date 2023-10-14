@@ -2,20 +2,11 @@
   "users": [
     {
       "id": 1,
-      "usuario": "John Doe",
+      "user": "John Doe",
       "email": "john.due@gmail.com"
     }
   ],
   "heroes": [
-    {
-      "id": "dc-batman",
-      "superhero": "Batman",
-      "publisher": "DC Comics",
-      "alter_ego": "Bruce Wayne",
-      "first_appearance": "Detective Comics #27",
-      "characters": "Bruce Wayne",
-      "alt_img": null
-    },
     {
       "id": "dc-superman",
       "superhero": "Superman",
